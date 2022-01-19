@@ -1,0 +1,12 @@
+{
+    "name": "P5_Blog",
+    "author": "CORE-UPM",
+    "license": "GNU",
+    "version": "0.1.0",
+    "info": {
+        "githubURL": "CORE-UPM/P5_Blog",
+        "serverUrl": "https://autocorector.dit.upm.es/",
+        "courseId": "",
+        "assignmentId": ""
+    }
+}
