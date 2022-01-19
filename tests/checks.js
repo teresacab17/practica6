@@ -1,12 +1,15 @@
 /* eslint-disable no-invalid-this*/
 /* eslint-disable no-undef*/
 const path = require("path");
-const {log,checkFileExists,create_browser,from_env,path_assignment, warn_errors, scored, checkFilExists} = require("./testutils");
+const {log,checkFileExists,create_browser,from_env,path_assignment: orig_path, warn_errors, scored, checkFilExists} = require("./testutils");
 const fs = require("fs");
 const net = require('net');
 const spawn = require("child_process").spawn;
 const util = require('util');
 const exec = util.promisify(require("child_process").exec);
+
+
+const path_assignment = path.join(orig_path, "blog");
 
 
 const URL = `file://${path.resolve(path.join(path_assignment.replace("%", "%25"), "cv.html"))}`;
