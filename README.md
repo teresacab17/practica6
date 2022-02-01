@@ -3,13 +3,12 @@
 
 <br/><br/><br/>
 
-# Práctica 5: Blog
+# Práctica 6: Blog
 
 Versión: 19 de Enero de 2022
 
 ## Objetivos
 * Afianzar los conocimientos obtenidos sobre el uso de Express para desarrollar servidores web.
-* Entender el uso de express-generator, así como del esqueleto y de la estructura de directorios generada para albergar una aplicación basada en node y express.
 * Aprender a completar en el esqueleto una aplicación de servidor basada en MVC (Modelo-Vista-Controlador) con vistas parciales EJS.
 
 ## Descripción de la práctica
@@ -341,7 +340,44 @@ Si pasa todos los tests se dará la máxima puntuación.
 
 # TODO
 
-* Actualizar el enunciado. He cambiado las referencias de quiz a post, y he actualizado algunos campos, pero habría que darle una vuelta.
+
+* Actualizar el enunciado
+Ahora mismo la salida del autocorector es:
+```
+Test: 3: Comprobar que las plantillas express-partials tienen los componentes adecuados
+        Puntuación: 4/4
+        Observaciones: Se incluyen todos los elementos necesarios en la plantilla
+
+Tests funcionales
+
+Lanzado el servidor en el puerto 3001
+3001
+Salida del servidor:  GET / 200 7.907 ms - 1750
+
+Test: 4: Comprobar que se resuelve una petición a / con código 200
+Salida del servidor:  GET / 200 1.638 ms - 1750
+
+        Puntuación: 1/1
+        Observaciones: Respuesta correcta
+
+Test: 5: Comprobar que se resuelve una petición a /author con código 200
+Salida del servidor:  GET /author 200 1.973 ms - 2960
+
+        Puntuación: 1/1
+        Observaciones: Respuesta correcta
+
+Test: 6: Comprobar que se resuelve una petición a /users con código 404
+Salida del servidor:  GET /users 404 2.602 ms - 3069
+
+        Puntuación: 1/1
+        Observaciones: Respuesta correcta
+
+Test: 7: Comprobar que se muestra la foto
+Salida del servidor:  GET /author 200 1.412 ms - 2960
+
+        Puntuación: 3/3
+        Observaciones: Foto incorporada
+```
 
 Estas son las instrucciones originales del enunciado:
 

@@ -17,18 +17,14 @@ const WAIT =  typeof process.env.WAIT !== "undefined"?parseInt(process.env.WAIT)
 // Only run certain tests. Especially useful for debugging
 const FILTER = new RegExp(process.env.TESTFILTER, "i");
 
-// Path with the solution, by default it is set to the parent of /tests/
-let REL_PATH = typeof process.env.PATH_ASSIGNMENT !== "undefined"?process.env.PATH_ASSIGNMENT:path.resolve(path.join(__dirname, "../"));
-
-const PATH_ASSIGNMENT = path.resolve(REL_PATH);
-
-
 // CRITICAL ERRORS. Si hay errores críticos, el resto de tests no se lanzan.
 let error_critical = null;
 let error_any = null;
 
 const TestUtils = {};
 
+
+TestUtils.ROOT = path.resolve(path.join(__dirname, "../"));
 
 TestUtils.from_env = (envName, def="") => {
     if( typeof process.env[envName] !== "undefined" ) {
@@ -173,7 +169,17 @@ TestUtils.log = function () {
     if(DEBUG) {console.log.apply(this, arguments );}
 };
 
-TestUtils.path_assignment = PATH_ASSIGNMENT;
+// Path with the solution, by default it is set to the parent of /tests/
+TestUtils.path_assignment = function(relpath="") {
+    if (process.env.PATH_ASSIGNMENT !== "undefined") {
+        return process.env.PATH_ASSIGNMENT;
+    } else {
+        return path.join(TestUtils.ROOT, relpath);
+    }
+
+
+
+}
 
 TestUtils.warn_errors = function() {
     if(error_any || error_critical) {
