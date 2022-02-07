@@ -171,7 +171,7 @@ TestUtils.log = function () {
 
 // Path with the solution, by default it is set to the parent of /tests/
 TestUtils.path_assignment = function(relpath="") {
-    if (process.env.PATH_ASSIGNMENT !== "undefined") {
+    if (typeof process.env.PATH_ASSIGNMENT !== "undefined") {
         return process.env.PATH_ASSIGNMENT;
     } else {
         return path.join(TestUtils.ROOT, relpath);
