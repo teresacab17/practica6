@@ -97,7 +97,6 @@ describe("Tests Práctica 2", function() {
             })
             log(`Lanzado el servidor en el puerto ${TEST_PORT}`);
             await new Promise(resolve => setTimeout(resolve, TIMEOUT));
-            console.log(TEST_PORT);
             browser.site = `http://localhost:${TEST_PORT}/`;
             try{
                 await browser.visit("/");
