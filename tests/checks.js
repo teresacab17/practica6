@@ -92,8 +92,8 @@ describe("Tests Práctica 5", function() {
                 .catch(check);
         });
 
-        let endpoint = '/users';
-        let code = 404;
+        endpoint = '/users';
+        code = 404;
         scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
                1, async function () {
             this.msg_ok = 'Respuesta correcta';
@@ -148,8 +148,8 @@ describe("Tests Práctica 5", function() {
         });
 
 
-        let endpoint = '/author';
-        let code = 200;
+        endpoint = '/author';
+        code = 200;
         scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
                1, async function () {
             this.msg_ok = 'Respuesta correcta';
