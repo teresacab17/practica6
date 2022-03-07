@@ -100,12 +100,12 @@ describe("Tests Práctica 5", function() {
             this.msg_err = 'No hubo respuesta';
             check = function(){
                 browser.assert.status(code);
-                console.log('ppppppp', browser.text('title');
+                console.log('ppppppp', browser.text('title'));
             }
             return browser.visit(endpoint)
                 .then(check)
                 .catch(check);
-        })
+        });
 
         scored(`Comprobar que se han añadido plantillas express-partials`, 1, async function () {
             this.msg_ok = 'Se incluye layout.ejs';
