@@ -40,17 +40,11 @@ describe("Tests Práctica 5", function() {
 
     describe("Tests funcionales", function () {
         var server;
-        const db_file = path.resolve(path.join(ROOT, 'cv.sqlite'));
-
+    
         before(async function() {
-            // Crear base de datos nueva y poblarla antes de los tests funcionales. por defecto, el servidor coge post.sqlite del CWD
-            fs.closeSync(fs.openSync(db_file, 'w'));
-
-            let sequelize_cmd = path.join(PATH_ASSIGNMENT, "node_modules", ".bin", "sequelize");
-            let db_url = `sqlite://${db_file}`;
 
             let bin_path = path.join(PATH_ASSIGNMENT, "bin", "www");
-            server = spawn('npm', [bin_path], {env: {PORT: TEST_PORT, DATABASE_URL: db_url}});
+            server = spawn('npm', [bin_path], {env: {PORT: TEST_PORT});
             server.stdout.setEncoding('utf-8');
             server.stdout.on('data', function(data) {
                 log('Salida del servidor: ', data);
@@ -72,9 +66,7 @@ describe("Tests Práctica 5", function() {
         });
 
         after(async function() {
-            // Borrar base de datos
             await server.kill();
-            fs.unlinkSync(db_file);
         })
 
         let endpoint = '/';
