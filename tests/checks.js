@@ -29,12 +29,12 @@ describe("Tests Práctica 5", function() {
     });
 
     describe("Prechecks", function () {
-	    scored(`Comprobando que existe la carpeta de la entrega: ${PATH_ASSIGNMENT}`,
+        scored(`Comprobando que existe la carpeta de la entrega: ${PATH_ASSIGNMENT}`,
                -1,
                async function () {
                    this.msg_err = `No se encontró la carpeta '${PATH_ASSIGNMENT}'`;
                    (await checkFileExists(PATH_ASSIGNMENT)).should.be.equal(true);
-	             });
+                 });
     });
 
 
@@ -73,23 +73,24 @@ describe("Tests Práctica 5", function() {
             this.msg_err = 'Respuesta incorrecta';
             check = function(){
                 browser.assert.status(code);
-                console.log('ppppppp', browser.text('title'));
+                browser.text('title').should.be.equal('Blog');
+                browser.text('h1').should.be.equal('Welcome to My Blog');
             }
             return browser.visit(endpoint)
                 .then(check)
                 .catch(check);
         });
 
-        endpoint = '/users';
-        code = 404;
-        scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
+        endpoint1 = '/users';
+        code1 = 404;
+        scored(`Comprobar que se resuelve una petición a ${endpoint1} con código ${code1}`,
                1.5, async function () {
             this.msg_ok = 'Respuesta correcta';
             this.msg_err = 'No hubo respuesta';
             check = function(){
-                browser.assert.status(code);
+                browser.assert.status(code1);
             }
-            return browser.visit(endpoint)
+            return browser.visit(endpoint1)
                 .then(check)
                 .catch(check);
         });
@@ -109,12 +110,8 @@ describe("Tests Práctica 5", function() {
                     true: [/<%- body %>/g, /<header/, /<\/header>/, /<nav/, /<\/nav/, /<footer/, /<\/footer>/]
                 },
                 "index.ejs": {
-                    true: [/<h1/, /<\/h1>/],
-                    false: [/<header>/, /<\/header>/, /<nav/, /<\/nav>/, /<footer/, /<\/footer>/]
-                },
-                [path.join("cv", "cv.ejs")]: {
-                    true: [/<h1/, /<\/h1>/, /<section/, /github.com/]
-                },
+                    true: [/<h1/, /<\/h1>/, /<section/, /<\/section>/]
+                }
             };
 
             for (fpath in checks) {
@@ -135,32 +132,32 @@ describe("Tests Práctica 5", function() {
         });
 
 
-        endpoint = '/author';
-        code = 200;
-        scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
+        endpoint2 = '/author';
+        code2 = 200;
+        scored(`Comprobar que se resuelve una petición a ${endpoint2} con código ${code2}`,
                1.5, async function () {
             this.msg_ok = 'Respuesta correcta';
             this.msg_err = 'No hubo respuesta';
             check = function(){
-                browser.assert.status(code);
+                browser.assert.status(code2);
             }
-            return browser.visit(endpoint)
+            return browser.visit(endpoint2)
                 .then(check)
                 .catch(check);
         });
 
         scored(`Comprobar que se muestra la foto`,
                2, async function () {
-		        this.name = "";
-		        this.msg_ok = 'Foto incorporada';
-		        this.msg_err = 'No se encuentra la foto';
+                this.name = "";
+                this.msg_ok = 'Foto incorporada';
+                this.msg_err = 'No se encuentra la foto';
 
-		        await browser.visit("/author");
-		        browser.assert.status(200);
-		        allcontent = browser.html();
-		        content = browser.html("img");
-		        content.includes("images/foto.jpg").should.be.equal(true);
-	      })
+                await browser.visit("/author");
+                browser.assert.status(200);
+                allcontent = browser.html();
+                content = browser.html("img");
+                content.includes("images/foto.jpg").should.be.equal(true);
+          })
     });
 
 })

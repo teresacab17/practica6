@@ -113,10 +113,12 @@ $ npm run super
 
 ### Tarea 3 - Modificar la página Home
 
-Se pide:
+Se pide modificar el fichero principal que sirve el servidor: 
 
 * Modificar la etiqueta **title** del head para que el título de la página sea **Blog**.
 * Cambiar el título **h1** del body para sea **Welcome to My Blog**.
+
+*Nota*: tenga en cuenta que cuando añada los marcos de la aplicación con express-partials puede que este test deje de pasar en el autocorector hasta que aplique los cambios necesarios en el paso correspondiente a los marcos.
 
 ### Tarea 4 - Limpiar el esqueleto
 
@@ -205,7 +207,7 @@ Es un fichero **EJS**.
 Debe contener un elemento HTML de tipo **\<section\>**. 
 Esta vista debe mostrar el título de la página, el nombre del autor de la práctica, su foto y un breve texto sobre el autor.
 
-La fotografía del autor que muestra en esta vista debe incluirse en el directorio de imágenes **public/images**. Puede ser ficticia. 
+La fotografía del autor que muestra en esta vista debe incluirse en el directorio de imágenes **public/images** y llamarse **foto.jpg**. Puede ser ficticia. 
 
 Para probar este desarrollo, el alumno puede conectarse con el navegador a la URL **http://localhost:3000/author**. 
 Debe mostrar la vista con el CV del autor dentro del marco de aplicación.
