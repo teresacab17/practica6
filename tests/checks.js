@@ -67,10 +67,10 @@ describe("Tests Práctica 5", function() {
 
         let endpoint = '/';
         let code = 200;
-        scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
+        scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code} y que title y h1 son correctos`,
                2, async function () {
             this.msg_ok = 'Respuesta correcta';
-            this.msg_err = 'No hubo respuesta';
+            this.msg_err = 'Respuesta incorrecta';
             check = function(){
                 browser.assert.status(code);
                 console.log('ppppppp', browser.text('title'));
