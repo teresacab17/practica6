@@ -35,15 +35,86 @@ describe("Tests Práctica 5", function() {
                    this.msg_err = `No se encontró la carpeta '${PATH_ASSIGNMENT}'`;
                    (await checkFileExists(PATH_ASSIGNMENT)).should.be.equal(true);
 	             });
+    });
 
-        scored(`Comprobar que se han añadido plantillas express-partials`, 1.5, async function () {
+
+    describe("Tests funcionales", function () {
+        var server;
+        const db_file = path.resolve(path.join(ROOT, 'cv.sqlite'));
+
+        before(async function() {
+            // Crear base de datos nueva y poblarla antes de los tests funcionales. por defecto, el servidor coge post.sqlite del CWD
+            fs.closeSync(fs.openSync(db_file, 'w'));
+
+            let sequelize_cmd = path.join(PATH_ASSIGNMENT, "node_modules", ".bin", "sequelize");
+            let db_url = `sqlite://${db_file}`;
+
+            let bin_path = path.join(PATH_ASSIGNMENT, "bin", "www");
+            server = spawn('npm', ['run', 'super'], {env: {PORT: TEST_PORT, DATABASE_URL: db_url}});
+            server.stdout.setEncoding('utf-8');
+            server.stdout.on('data', function(data) {
+                log('Salida del servidor: ', data);
+            })
+            log(`Lanzado el servidor en el puerto ${TEST_PORT}`);
+            await new Promise(resolve => setTimeout(resolve, TIMEOUT));
+            browser.site = `http://localhost:${TEST_PORT}/`;
+            try{
+                await browser.visit("/");
+                scored(`Comprobar scripts package.json`, 1.5, async function () {
+                    this.msg_ok = 'Script para arrancar con supervisor ok';
+                    this.msg_err = 'El script para arrancar con supervisor no funciona';
+                    browser.assert.status(200);
+                });
+            }catch(e){
+                console.log("No se ha podido contactar con el servidor.");
+                throw(e);
+            }
+        });
+
+        after(async function() {
+            // Borrar base de datos
+            await server.kill();
+            fs.unlinkSync(db_file);
+        })
+
+        let endpoint = '/';
+        let code = 200;
+        scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
+               1.5, async function () {
+            this.msg_ok = 'Respuesta correcta';
+            this.msg_err = 'No hubo respuesta';
+            check = function(){
+                browser.assert.status(code);
+
+            }
+            return browser.visit(endpoint)
+                .then(check)
+                .catch(check);
+        });
+
+        let endpoint = '/users';
+        let code = 404;
+        scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
+               1, async function () {
+            this.msg_ok = 'Respuesta correcta';
+            this.msg_err = 'No hubo respuesta';
+            check = function(){
+                browser.assert.status(code);
+                console.log('ppppppp', browser.text('title');
+            }
+            return browser.visit(endpoint)
+                .then(check)
+                .catch(check);
+        })
+
+        scored(`Comprobar que se han añadido plantillas express-partials`, 1, async function () {
             this.msg_ok = 'Se incluye layout.ejs';
             this.msg_err = 'No se ha encontrado views/layout.ejs';
             fs.existsSync(path.join(PATH_ASSIGNMENT, "views", "layout.ejs")).should.be.equal(true);
         });
 
         scored(`Comprobar que las plantillas express-partials tienen los componentes adecuados`,
-               1.5, async function () {
+               2, async function () {
             this.msg_ok = 'Se incluyen todos los elementos necesarios en la plantilla';
             this.msg_err = 'No se ha encontrado todos los elementos necesarios';
             let checks = {
@@ -75,73 +146,24 @@ describe("Tests Práctica 5", function() {
                 }
             }
         });
-    });
 
 
-    describe("Tests funcionales", function () {
-        var server;
-        const db_file = path.resolve(path.join(ROOT, 'cv.sqlite'));
-
-        before(async function() {
-            // Crear base de datos nueva y poblarla antes de los tests funcionales. por defecto, el servidor coge post.sqlite del CWD
-            fs.closeSync(fs.openSync(db_file, 'w'));
-
-            let sequelize_cmd = path.join(PATH_ASSIGNMENT, "node_modules", ".bin", "sequelize");
-            let db_url = `sqlite://${db_file}`;
-
-            let bin_path = path.join(PATH_ASSIGNMENT, "bin", "www");
-            server = spawn('npm', ['run', 'super'], {env: {PORT: TEST_PORT, DATABASE_URL: db_url}});
-            server.stdout.setEncoding('utf-8');
-            server.stdout.on('data', function(data) {
-                log('Salida del servidor: ', data);
-            })
-            log(`Lanzado el servidor en el puerto ${TEST_PORT}`);
-            await new Promise(resolve => setTimeout(resolve, TIMEOUT));
-            browser.site = `http://localhost:${TEST_PORT}/`;
-            try{
-                await browser.visit("/");
-                scored(`Comprobar que se muestra la foto`, 1.5, async function () {
-                    this.msg_ok = 'Script para arrancar con supervisor ok';
-                    this.msg_err = 'El script para arrancar con supervisor no funciona';
-                    browser.assert.status(200);
-                });
-            }catch(e){
-                console.log("No se ha podido contactar con el servidor.");
-                throw(e);
+        let endpoint = '/author';
+        let code = 200;
+        scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
+               1, async function () {
+            this.msg_ok = 'Respuesta correcta';
+            this.msg_err = 'No hubo respuesta';
+            check = function(){
+                browser.assert.status(code);
             }
+            return browser.visit(endpoint)
+                .then(check)
+                .catch(check);
         });
 
-        after(async function() {
-            // Borrar base de datos
-            await server.kill();
-            fs.unlinkSync(db_file);
-        })
-
-        var endpoints = [
-            ["/", 200],
-            ["/author", 200],
-            ["/users", 404],
-        ];
-
-        for (idx in endpoints) {
-            let endpoint = endpoints[idx][0]
-            let code = endpoints[idx][1]
-            let num = 8 + parseInt(idx);
-            scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
-                   2.5, async function () {
-                this.msg_ok = 'Respuesta correcta';
-                this.msg_err = 'No hubo respuesta';
-                check = function(){
-                    browser.assert.status(code);
-                }
-                return browser.visit(endpoint)
-                    .then(check)
-                    .catch(check);
-            })
-        }
-
         scored(`Comprobar que se muestra la foto`,
-               3, async function () {
+               2, async function () {
 		        this.name = "";
 		        this.msg_ok = 'Foto incorporada';
 		        this.msg_err = 'No se encuentra la foto';

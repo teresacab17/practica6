@@ -257,11 +257,12 @@ En el enlace **https://www.npmjs.com/package/autocorector** se proveen instrucci
 **RÚBRICA**: Se puntuará el ejercicio a corregir sumando el % indicado a la nota total si la parte indicada es correcta:
 
 - **15%:** Scripts de package.json
+- **15%:** Petición / con elementos adecuados title y h1
 - **10%:** Eliminar petición /users
-- **15%:** Petición /
-- **15%:** Existe el fichero views/layout.ejs
-- **15%:** Integracion de express-partials
-- **30%:** Petición /author
+- **10%:** Existe el fichero views/layout.ejs
+- **20%:** Integracion de express-partials
+- **10%:** Petición /author
+- **20%:** Se muestra correctamente la foto 
 
 
 Si pasa todos los tests se dará la máxima puntuación.
