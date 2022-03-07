@@ -23,27 +23,27 @@ const TEST_PORT =  parseInt(from_env("TEST_PORT", "3001"));
 let browser = create_browser();
 
 
-describe("Tests Práctica 2", function() {
+describe("Tests Práctica 5", function() {
     after(function () {
         warn_errors();
     });
 
     describe("Prechecks", function () {
-	      scored(`Comprobando que existe la carpeta de la entrega: ${PATH_ASSIGNMENT}`,
+	    scored(`Comprobando que existe la carpeta de la entrega: ${PATH_ASSIGNMENT}`,
                -1,
                async function () {
                    this.msg_err = `No se encontró la carpeta '${PATH_ASSIGNMENT}'`;
                    (await checkFileExists(PATH_ASSIGNMENT)).should.be.equal(true);
 	             });
 
-        scored(`Comprobar que se han añadido plantillas express-partials`, -1, async function () {
+        scored(`Comprobar que se han añadido plantillas express-partials`, 1.5, async function () {
             this.msg_ok = 'Se incluye layout.ejs';
             this.msg_err = 'No se ha encontrado views/layout.ejs';
             fs.existsSync(path.join(PATH_ASSIGNMENT, "views", "layout.ejs")).should.be.equal(true);
         });
 
         scored(`Comprobar que las plantillas express-partials tienen los componentes adecuados`,
-               4, async function () {
+               1.5, async function () {
             this.msg_ok = 'Se incluyen todos los elementos necesarios en la plantilla';
             this.msg_err = 'No se ha encontrado todos los elementos necesarios';
             let checks = {
@@ -90,7 +90,7 @@ describe("Tests Práctica 2", function() {
             let db_url = `sqlite://${db_file}`;
 
             let bin_path = path.join(PATH_ASSIGNMENT, "bin", "www");
-            server = spawn('node', [bin_path], {env: {PORT: TEST_PORT, DATABASE_URL: db_url}});
+            server = spawn('npm', ['run', 'super'], {env: {PORT: TEST_PORT, DATABASE_URL: db_url}});
             server.stdout.setEncoding('utf-8');
             server.stdout.on('data', function(data) {
                 log('Salida del servidor: ', data);
@@ -100,7 +100,11 @@ describe("Tests Práctica 2", function() {
             browser.site = `http://localhost:${TEST_PORT}/`;
             try{
                 await browser.visit("/");
-                browser.assert.status(200);
+                scored(`Comprobar que se muestra la foto`, 1.5, async function () {
+                    this.msg_ok = 'Script para arrancar con supervisor ok';
+                    this.msg_err = 'El script para arrancar con supervisor no funciona';
+                    browser.assert.status(200);
+                }
             }catch(e){
                 console.log("No se ha podido contactar con el servidor.");
                 throw(e);
@@ -124,7 +128,7 @@ describe("Tests Práctica 2", function() {
             let code = endpoints[idx][1]
             let num = 8 + parseInt(idx);
             scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
-                   1, async function () {
+                   2.5, async function () {
                 this.msg_ok = 'Respuesta correcta';
                 this.msg_err = 'No hubo respuesta';
                 check = function(){
