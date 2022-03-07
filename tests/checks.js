@@ -104,7 +104,7 @@ describe("Tests Práctica 5", function() {
                     this.msg_ok = 'Script para arrancar con supervisor ok';
                     this.msg_err = 'El script para arrancar con supervisor no funciona';
                     browser.assert.status(200);
-                }
+                });
             }catch(e){
                 console.log("No se ha podido contactar con el servidor.");
                 throw(e);
