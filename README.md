@@ -81,7 +81,7 @@ $ npm start
 
 El servidor lanzado atiende las peticiones en el puerto **3000**. Hay que ejecutar un navegador (Chrome, Firefox, Safari, ...) y conectarse a la URL **http://localhost:3000**. El navegador mostrará la página principal que ofrece el servidor que hemos creado.
 
-### Tarea 2 - Instalar supervisor
+### Tarea 2 - Instalar supervisor (opcional)
 
 Cada vez que se modifica algún fichero (javascript) de nuestro proyecto, hay que detener el servidor y relanzarlo para los nuevos cambios se apliquen. 
 Para no tener que hacer este proceso manualmente, pueden instalarse programas que lo hacen automáticamente por nosotros (**forever**, **supervisor**, ...). 
@@ -256,12 +256,11 @@ En el enlace **https://www.npmjs.com/package/autocorector** se proveen instrucci
 
 **RÚBRICA**: Se puntuará el ejercicio a corregir sumando el % indicado a la nota total si la parte indicada es correcta:
 
-- **15%:** Scripts de package.json
-- **15%:** Petición / con elementos adecuados title y h1
-- **10%:** Eliminar petición /users
+- **20%:** Petición / con elementos adecuados title y h1
+- **15%:** Eliminar petición /users
 - **10%:** Existe el fichero views/layout.ejs
 - **20%:** Integracion de express-partials
-- **10%:** Petición /author
+- **15%:** Petición /author
 - **20%:** Se muestra correctamente la foto 
 
 

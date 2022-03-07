@@ -54,11 +54,7 @@ describe("Tests Práctica 5", function() {
             browser.site = `http://localhost:${TEST_PORT}/`;
             try{
                 await browser.visit("/");
-                scored(`Comprobar scripts package.json`, 1.5, async function () {
-                    this.msg_ok = 'Script para arrancar con supervisor ok';
-                    this.msg_err = 'El script para arrancar con supervisor no funciona';
-                    browser.assert.status(200);
-                });
+                browser.assert.status(200);
             }catch(e){
                 console.log("No se ha podido contactar con el servidor.");
                 throw(e);
@@ -72,12 +68,12 @@ describe("Tests Práctica 5", function() {
         let endpoint = '/';
         let code = 200;
         scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
-               1.5, async function () {
+               2, async function () {
             this.msg_ok = 'Respuesta correcta';
             this.msg_err = 'No hubo respuesta';
             check = function(){
                 browser.assert.status(code);
-
+                console.log('ppppppp', browser.text('title'));
             }
             return browser.visit(endpoint)
                 .then(check)
@@ -87,12 +83,11 @@ describe("Tests Práctica 5", function() {
         endpoint = '/users';
         code = 404;
         scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
-               1, async function () {
+               1.5, async function () {
             this.msg_ok = 'Respuesta correcta';
             this.msg_err = 'No hubo respuesta';
             check = function(){
                 browser.assert.status(code);
-                console.log('ppppppp', browser.text('title'));
             }
             return browser.visit(endpoint)
                 .then(check)
@@ -143,7 +138,7 @@ describe("Tests Práctica 5", function() {
         endpoint = '/author';
         code = 200;
         scored(`Comprobar que se resuelve una petición a ${endpoint} con código ${code}`,
-               1, async function () {
+               1.5, async function () {
             this.msg_ok = 'Respuesta correcta';
             this.msg_err = 'No hubo respuesta';
             check = function(){
