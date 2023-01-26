@@ -3,7 +3,7 @@
 
 <br/><br/><br/>
 
-# Práctica 5: Express CV
+# Práctica 6: Express CV
 
 Versión: 25 de Enero de 2023
 
