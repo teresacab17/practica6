@@ -5,7 +5,7 @@
 
 # Práctica 6: Express CV
 
-Versión: 25 de Enero de 2023
+Versión: 13 de Febrero de 2023
 
 ## Objetivos
 * Afianzar los conocimientos obtenidos sobre el uso de Express para desarrollar servidores web.
@@ -216,12 +216,12 @@ Capturas a entregar con esta práctica:
 
 - Captura 1: Captura de la pantalla Home donde se vea el diseño de la pantalla (marco de aplicación).
 <kbd>
-<img src="https://github.com/CORE-UPM/P6_ExpressCV/blob/master/Captura.6.1.png" alt="captura de pantalla" width="500"/>
+<img src="https://user-images.githubusercontent.com/716928/218464013-42c704e9-212d-4ae4-bde7-82e471bfd885.png" alt="captura de pantalla" width="500"/>
 </kbd>
 
 - Captura 2: Captura de la pantalla de autor donde se vea el diseño de la pantalla (marco de aplicación). El diseño de pantalla debe ser igual al de la captura anterior.
 <kbd>
-<img src="https://github.com/CORE-UPM/P6_ExpressCV/blob/master/Captura.6.2.png" alt="captura de pantalla" width="500"/>
+<img src="https://user-images.githubusercontent.com/716928/218464044-4220c58d-6fe5-4955-b836-b87ab0c05a87.png" alt="captura de pantalla" width="500"/>
 </kbd>
 
 ## Instrucciones para la Entrega y Evaluación.
