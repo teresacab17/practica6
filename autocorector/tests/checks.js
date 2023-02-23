@@ -1,7 +1,7 @@
 /* eslint-disable no-invalid-this*/
 /* eslint-disable no-undef*/
 const path = require("path");
-const {log,checkFileExists,create_browser,from_env,ROOT,path_assignment, warn_errors, scored, checkFilExists} = require("./testutils");
+const {log,checkFileExists,create_browser,from_env,ROOT,path_assignment, warn_errors, scored, checkFilExists} = require("../utils/testutils");
 const fs = require("fs");
 const net = require('net');
 const spawn = require("child_process").spawn;
@@ -23,7 +23,7 @@ const TEST_PORT =  parseInt(from_env("TEST_PORT", "3001"));
 let browser = create_browser();
 
 
-describe("Tests Práctica 5", function() {
+describe("Tests Práctica 6", function() {
     after(function () {
         warn_errors();
     });

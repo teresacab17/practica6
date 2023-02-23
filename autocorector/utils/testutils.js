@@ -24,7 +24,7 @@ let error_any = null;
 const TestUtils = {};
 
 
-TestUtils.ROOT = path.resolve(path.join(__dirname, "../"));
+TestUtils.ROOT = path.resolve(path.join(__dirname, "../../"));
 
 TestUtils.from_env = (envName, def="") => {
     if( typeof process.env[envName] !== "undefined" ) {
@@ -183,9 +183,9 @@ TestUtils.path_assignment = function(relpath="") {
 
 TestUtils.warn_errors = function() {
     if(error_any || error_critical) {
-        console.log(`Algún error de Javascript ha sido suprimido. Puedes obtener más información de los errores lanzando el autocorector con la variable DEBUG. Por ejemplo:
+        console.log(`Algún error de Javascript ha sido suprimido. Puedes obtener más información de los errores lanzando el autocorector con la opción --debug. Por ejemplo:
 
-    DEBUG=1 autocorector
+    npx autocorector --debug
 
     Cuando preguntes en el foro, asegúrate de incluir esa información para que podamos ayudarte.
     `);
