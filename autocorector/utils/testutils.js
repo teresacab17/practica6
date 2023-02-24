@@ -147,7 +147,7 @@ TestUtils.scored = (name, score, func) => {
             }
             return;
         } catch(e){
-            TestUtils.log("Exception in test:", e);
+            console.log("Exception in test:", e);
             error_any = true;
             if (!this.msg_err){
                 this.msg_err =  "";

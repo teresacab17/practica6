@@ -39,7 +39,7 @@ describe("Tests Práctica 6", function() {
         before(async function() {
 
             let bin_path = path.join(PATH_ASSIGNMENT, "bin", "www");
-            server = spawn('node', [bin_path], {env: {PORT: TEST_PORT}});
+            server = spawn('node', [bin_path], {env: {PORT: TEST_PORT, PATH: process.env.PATH}});
             server.stdout.setEncoding('utf-8');
             server.stdout.on('data', function(data) {
                 debug('Salida del servidor: ', data);
