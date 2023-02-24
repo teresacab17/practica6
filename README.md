@@ -5,7 +5,7 @@
 
 # Práctica 6: Express CV
 
-Versión: 13 de Febrero de 2023
+Versión: 24 de Febrero de 2023
 
 ## Objetivos
 * Afianzar los conocimientos obtenidos sobre el uso de Express para desarrollar servidores web.
@@ -50,7 +50,7 @@ Este paquete proporciona un programa llamado **express** que sirve para crear el
 Para crear este esqueleto inicial, el alumno debe ejecutar el comando:
 
 ```
-$ npx express --view=ejs blog
+$ npx express --view ejs blog
 ```
 
 Este comando crea el subdirectorio **blog** con los ficheros del esqueleto inicial de la práctica. 
