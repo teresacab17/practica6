@@ -9,9 +9,6 @@ const access = promisify(fs.access);
 
 const REG_URL = /(\b(http|ftp|https|ftps):\/\/[-A-ZáéíóúÁÉÍÓÚ0-9+&@#\/%?=~_|!:,.;]*[-A-ZáéíóúÁÉÍÓÚ0-9+&@#\/%=~_|])/ig;
 
-// If we are in DEBUG mode, the output will be more verbose
-const DEBUG =  typeof process.env.DEBUG !== "undefined";
-
 const WAIT =  typeof process.env.WAIT !== "undefined"?parseInt(process.env.WAIT):50000;
 
 // Only run certain tests. Especially useful for debugging
@@ -164,10 +161,6 @@ TestUtils.scored = (name, score, func) => {
     });
 };
 
-// TODO: Integrar bien con un logger
-TestUtils.log = function () {
-    if(DEBUG) {console.log.apply(this, arguments );}
-};
 
 // Path with the solution, by default it is set to the parent of /tests/
 TestUtils.path_assignment = function(relpath="") {

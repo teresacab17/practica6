@@ -1,7 +1,7 @@
 /* eslint-disable no-invalid-this*/
 /* eslint-disable no-undef*/
 const path = require("path");
-const {log,checkFileExists,create_browser,from_env,ROOT,path_assignment, warn_errors, scored, checkFilExists} = require("../utils/testutils");
+const {checkFileExists,create_browser,from_env,ROOT,path_assignment, warn_errors, scored} = require("../utils/testutils");
 const fs = require("fs");
 const net = require('net');
 const spawn = require("child_process").spawn;
@@ -10,12 +10,7 @@ const exec = util.promisify(require("child_process").exec);
 
 
 const PATH_ASSIGNMENT = path_assignment("blog");
-console.log(PATH_ASSIGNMENT);
 
-
-const URL = `file://${path.resolve(path.join(PATH_ASSIGNMENT.replace("%", "%25"), "cv.html"))}`;
-// Should the server log be included in the logs?
-const LOG_SERVER = from_env("LOG_SERVER") !== "undefined";
 const TIMEOUT =  parseInt(from_env("TIMEOUT", 2000));
 const TEST_PORT =  parseInt(from_env("TEST_PORT", "3001"));
 
@@ -47,11 +42,11 @@ describe("Tests Práctica 6", function() {
             server = spawn('node', [bin_path], {env: {PORT: TEST_PORT}});
             server.stdout.setEncoding('utf-8');
             server.stdout.on('data', function(data) {
-                log('Salida del servidor: ', data);
+                debug('Salida del servidor: ', data);
             })
-            log(`Lanzado el servidor en el puerto ${TEST_PORT}`);
+            console.log(`Lanzado el servidor en el puerto ${TEST_PORT}`);
             await new Promise(resolve => setTimeout(resolve, TIMEOUT));
-            browser.site = `http://localhost:${TEST_PORT}/`;
+            browser.site = `http://127.0.0.1:${TEST_PORT}/`;
             try{
                 await browser.visit("/");
                 browser.assert.status(200);
