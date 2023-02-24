@@ -190,4 +190,6 @@ TestUtils.create_browser = function(url, wait=WAIT) {
     return new Browser({"waitDuration": wait, "silent": true, "runScripts": false });
 };
 
+TestUtils.has_failed = function() { return error_critical };
+
 module.exports = TestUtils;
