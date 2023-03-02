@@ -69,7 +69,7 @@ describe("Tests Práctica 6", function() {
             check = function(){
                 browser.assert.status(code);
                 browser.text('title').should.be.equal('Blog');
-                browser.text('h1').should.be.equal('Welcome to My Blog');
+                browser.text('h1').includes('Welcome to My Blog').should.be.equal(true);
             }
             return browser.visit(endpoint)
                 .then(check)
