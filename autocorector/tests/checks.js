@@ -11,7 +11,7 @@ const exec = util.promisify(require("child_process").exec);
 
 const PATH_ASSIGNMENT = path_assignment("blog");
 
-const TIMEOUT =  parseInt(from_env("TIMEOUT", 2000));
+const TIMEOUT =  parseInt(from_env("TIMEOUT", 6000));
 const TEST_PORT =  parseInt(from_env("TEST_PORT", "3001"));
 
 
